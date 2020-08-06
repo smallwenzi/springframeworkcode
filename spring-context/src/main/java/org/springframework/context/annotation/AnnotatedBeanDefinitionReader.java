@@ -16,9 +16,6 @@
 
 package org.springframework.context.annotation;
 
-import java.lang.annotation.Annotation;
-import java.util.function.Supplier;
-
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
@@ -32,6 +29,9 @@ import org.springframework.core.env.EnvironmentCapable;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
+
+import java.lang.annotation.Annotation;
+import java.util.function.Supplier;
 
 /**
  * Convenient adapter for programmatic registration of bean classes.
@@ -68,6 +68,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @see #setEnvironment(Environment)
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry) {
+		//这里的BeanDefinitionRegistry当然就是AnnotationConfigApplicationContext的实例了
 		this(registry, getOrCreateEnvironment(registry));
 	}
 
@@ -81,10 +82,13 @@ public class AnnotatedBeanDefinitionReader {
 	 * @since 3.1
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {
+		System.out.println("class"+ AnnotatedBeanDefinitionReader.class.getName()+",2 初始化一个Bean读取器 ");
+		System.out.println("class"+ AnnotatedBeanDefinitionReader.class.getName()+",registry对象="+registry+",environment对象="+environment);
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+		//让我们把目光移动到这个方法的最后一行，进入registerAnnotationConfigProcessors方法：
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
@@ -246,30 +250,63 @@ public class AnnotatedBeanDefinitionReader {
 	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 */
+	/**
+	1 通过AnnotatedGenericBeanDefinition的构造方法，
+	 获得配置类的BeanDefinition，这里是不是似曾相似，
+	 在注册ConfigurationClassPostProcessor类的时候，
+	 也是通过构造方法去获得BeanDefinition的，只不过当时是通过RootBeanDefinition去获得，
+	 现在是通过AnnotatedGenericBeanDefinition去获得。
+
+	 2判断需不需要跳过注册，Spring中有一个@Condition注解，如果不满足条件，就会跳过这个类的注册。
+
+	3 然后是解析作用域，如果没有设置的话，默认为单例。
+
+	 4 获得BeanName。
+
+	 5 解析通用注解，填充到AnnotatedGenericBeanDefinition，解析的注解为Lazy，Primary，DependsOn，Role，Description。
+
+	 6 限定符处理，不是特指@Qualifier注解，也有可能是Primary，或者是Lazy，或者是其他（理论上是任何注解，这里没有判断注解的有效性）。
+
+	 7 把AnnotatedGenericBeanDefinition数据结构和beanName封装到一个对象中（这个不是很重要，可以简单的理解为方便传参）。
+
+	 8 注册，最终会调用DefaultListableBeanFactory中的registerBeanDefinition方法去注册：
+	 */
 	private <T> void doRegisterBean(Class<T> beanClass, @Nullable String name,
 			@Nullable Class<? extends Annotation>[] qualifiers, @Nullable Supplier<T> supplier,
 			@Nullable BeanDefinitionCustomizer[] customizers) {
-
+        //AnnotatedGenericBeanDefinition可以理解为一种数据结构，是用来描述Bean的，这里的作用就是把传入的标记了注解的类
+		//转为AnnotatedGenericBeanDefinition数据结构，里面有一个getMetadata方法，可以拿到类上的注解
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(beanClass);
+		//判断是否需要跳过注解，spring中有一个@Condition注解，当不满足条件，这个bean就不会被解析
 		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
 			return;
 		}
 
 		abd.setInstanceSupplier(supplier);
+		//解析bean的作用域，如果没有设置的话，默认为单例
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
 		abd.setScope(scopeMetadata.getScopeName());
+		//获得beanName
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
-
+		//解析通用注解，填充到AnnotatedGenericBeanDefinition，解析的注解为Lazy，Primary，DependsOn，Role，Description
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
+		//限定符处理，不是特指@Qualifier注解，也有可能是Primary,或者是Lazy，或者是其他（理论上是任何注解，这里没有判断注解的有效性），如果我们在外面，以类似这种
+		//AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Appconfig.class);常规方式去初始化spring，
+		//qualifiers永远都是空的，包括上面的name和instanceSupplier都是同样的道理
+		//但是spring提供了其他方式去注册bean，就可能会传入了
 		if (qualifiers != null) {
+			//可以传入qualifier数组，所以需要循环处理
 			for (Class<? extends Annotation> qualifier : qualifiers) {
+
+				//Primary注解优先
 				if (Primary.class == qualifier) {
 					abd.setPrimary(true);
 				}
+				//Lazy注解
 				else if (Lazy.class == qualifier) {
 					abd.setLazyInit(true);
 				}
-				else {
+				else { //其他，AnnotatedGenericBeanDefinition有个Map<String,AutowireCandidateQualifier>属性，直接push进去
 					abd.addQualifier(new AutowireCandidateQualifier(qualifier));
 				}
 			}
@@ -279,9 +316,13 @@ public class AnnotatedBeanDefinitionReader {
 				customizer.customize(abd);
 			}
 		}
-
+		//这个方法用处不大，就是把AnnotatedGenericBeanDefinition数据结构和beanName封装到一个对象中
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
+		//注册，最终会调用DefaultListableBeanFactory中的registerBeanDefinition方法去注册，
+		//DefaultListableBeanFactory维护着一系列信息，比如beanDefinitionNames，beanDefinitionMap
+		//beanDefinitionNames是一个List<String>,用来保存beanName
+		//beanDefinitionMap是一个Map,用来保存beanName和beanDefinition
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
 	}
 

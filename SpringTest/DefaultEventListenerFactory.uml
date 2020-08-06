@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.context.event.DefaultEventListenerFactory</OriginalElement>
+  <nodes>
+    <node x="208.0" y="0.0">org.springframework.core.Ordered</node>
+    <node x="56.75" y="79.0">org.springframework.context.event.DefaultEventListenerFactory</node>
+    <node x="0.0" y="0.0">org.springframework.context.event.EventListenerFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.context.event.DefaultEventListenerFactory" target="org.springframework.core.Ordered">
+      <point x="59.25" y="-14.5" />
+      <point x="234.5" y="54.0" />
+      <point x="256.5" y="54.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.context.event.DefaultEventListenerFactory" target="org.springframework.context.event.EventListenerFactory">
+      <point x="-59.25" y="-14.5" />
+      <point x="116.0" y="54.0" />
+      <point x="94.0" y="54.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="152.5" y="54.0" />
+  <SelectedNodes>
+    <node>org.springframework.context.event.DefaultEventListenerFactory</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

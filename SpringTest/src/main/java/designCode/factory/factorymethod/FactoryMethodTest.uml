@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>designCode.factory.factorymethod.FactoryMethodTest</OriginalElement>
+  <nodes>
+    <node x="0.0" y="113.0">designCode.factory.service.impl.PythonCourse</node>
+    <node x="332.79513888888897" y="216.0">designCode.factory.factorymethod.impl.JavaCourseFactory</node>
+    <node x="268.2118055555556" y="0.0">designCode.factory.service.ICourse</node>
+    <node x="250.91319444444449" y="319.0">designCode.factory.factorymethod.FactoryMethodTest</node>
+    <node x="153.0" y="113.0">designCode.factory.factorymethod.ICourseFactory</node>
+    <node x="357.0" y="113.0">designCode.factory.service.impl.JavaCourse</node>
+    <node x="42.916666666666686" y="216.0">designCode.factory.factorymethod.impl.PythonCourseFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="designCode.factory.factorymethod.impl.PythonCourseFactory" target="designCode.factory.service.ICourse">
+      <point x="0.0" y="-26.5" />
+      <point x="134.91666666666669" y="191.0" />
+      <point x="142.5" y="191.0" />
+      <point x="142.5" y="83.0" />
+      <point x="299.7118055555556" y="83.0" />
+      <point x="-31.5" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.impl.PythonCourseFactory" target="designCode.factory.service.impl.PythonCourse">
+      <point x="-61.33333333333334" y="-26.5" />
+      <point x="73.58333333333334" y="191.0" />
+      <point x="66.0" y="191.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.impl.JavaCourseFactory" target="designCode.factory.service.ICourse">
+      <point x="61.333333333333314" y="-26.5" />
+      <point x="486.1284722222223" y="191.0" />
+      <point x="502.5" y="191.0" />
+      <point x="502.5" y="83.0" />
+      <point x="362.7118055555556" y="83.0" />
+      <point x="31.5" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.service.impl.PythonCourse" target="designCode.factory.service.ICourse">
+      <point x="0.0" y="-26.5" />
+      <point x="66.0" y="73.0" />
+      <point x="278.7118055555556" y="73.0" />
+      <point x="-52.5" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.FactoryMethodTest" target="designCode.factory.service.ICourse">
+      <point x="62.62500000000003" y="-26.5" />
+      <point x="397.0381944444445" y="299.0" />
+      <point x="527.2951388888889" y="299.0" />
+      <point x="527.2951388888889" y="73.0" />
+      <point x="383.7118055555556" y="73.0" />
+      <point x="52.5" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.FactoryMethodTest" target="designCode.factory.factorymethod.impl.PythonCourseFactory">
+      <point x="-62.62499999999997" y="-26.5" />
+      <point x="271.7881944444445" y="299.0" />
+      <point x="134.91666666666669" y="299.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.impl.JavaCourseFactory" target="designCode.factory.factorymethod.ICourseFactory">
+      <point x="-61.33333333333343" y="-26.5" />
+      <point x="363.46180555555554" y="191.0" />
+      <point x="306.33333333333337" y="191.0" />
+      <point x="61.33333333333337" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.service.impl.JavaCourse" target="designCode.factory.service.ICourse">
+      <point x="0.0" y="-26.5" />
+      <point x="420.0" y="93.0" />
+      <point x="341.7118055555556" y="93.0" />
+      <point x="10.5" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.impl.PythonCourseFactory" target="designCode.factory.factorymethod.ICourseFactory">
+      <point x="61.33333333333334" y="-26.5" />
+      <point x="196.25000000000003" y="191.0" />
+      <point x="183.66666666666666" y="191.0" />
+      <point x="-61.33333333333334" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.impl.JavaCourseFactory" target="designCode.factory.service.impl.JavaCourse">
+      <point x="-5.6843418860808015E-14" y="-26.5" />
+      <point x="424.7951388888889" y="191.0" />
+      <point x="420.0" y="191.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.FactoryMethodTest" target="designCode.factory.factorymethod.impl.JavaCourseFactory">
+      <point x="20.87500000000003" y="-26.5" />
+      <point x="355.2881944444445" y="289.0" />
+      <point x="424.79513888888897" y="289.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.FactoryMethodTest" target="designCode.factory.factorymethod.ICourseFactory">
+      <point x="-20.87499999999997" y="-26.5" />
+      <point x="313.5381944444445" y="289.0" />
+      <point x="245.0" y="289.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="designCode.factory.factorymethod.ICourseFactory" target="designCode.factory.service.ICourse">
+      <point x="0.0" y="-26.5" />
+      <point x="245.0" y="93.0" />
+      <point x="320.7118055555556" y="93.0" />
+      <point x="-10.5" y="26.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="264.0" y="186.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

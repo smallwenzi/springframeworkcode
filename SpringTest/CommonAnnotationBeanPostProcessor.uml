@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.context.annotation.CommonAnnotationBeanPostProcessor</OriginalElement>
+  <nodes>
+    <node x="703.9833333333333" y="0.0">org.springframework.beans.factory.config.BeanPostProcessor</node>
+    <node x="180.0" y="0.0">org.springframework.core.Ordered</node>
+    <node x="923.0" y="79.0">java.lang.SuppressWarnings</node>
+    <node x="307.5000000000001" y="158.0">org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor</node>
+    <node x="1377.5" y="158.0">org.springframework.beans.factory.BeanFactoryAware</node>
+    <node x="903.5" y="237.0">org.springframework.context.annotation.CommonAnnotationBeanPostProcessor</node>
+    <node x="1416.0" y="79.0">org.springframework.beans.factory.Aware</node>
+    <node x="624.0" y="79.0">org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor</node>
+    <node x="152.0" y="79.0">org.springframework.core.PriorityOrdered</node>
+    <node x="325.00000000000006" y="79.0">org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor</node>
+    <node x="1103.0" y="79.0">org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor</node>
+    <node x="0.0" y="79.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="-5.6843418860808015E-14" y="-14.5" />
+      <point x="464.5" y="54.0" />
+      <point x="731.8166666666668" y="54.0" />
+      <point x="-55.66666666666663" y="14.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor">
+      <point x="55.799999999999955" y="-14.5" />
+      <point x="1098.8" y="207.0" />
+      <point x="1249.5" y="207.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="java.io.Serializable">
+      <point x="-111.60000000000002" y="-14.5" />
+      <point x="931.4000000000001" y="217.0" />
+      <point x="33.0" y="217.0" />
+      <point x="-33.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor" target="java.io.Serializable">
+      <point x="-125.60000000000008" y="-14.5" />
+      <point x="338.90000000000003" y="138.0" />
+      <point x="99.0" y="138.0" />
+      <point x="33.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="java.lang.SuppressWarnings">
+      <point x="0.0" y="-14.5" />
+      <point x="40.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="org.springframework.beans.factory.BeanFactoryAware">
+      <point x="111.59999999999991" y="-14.5" />
+      <point x="1154.6" y="217.0" />
+      <point x="1457.5" y="217.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor" target="org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor">
+      <point x="62.7999999999999" y="-14.5" />
+      <point x="527.3" y="128.0" />
+      <point x="763.5" y="128.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor" target="org.springframework.core.PriorityOrdered">
+      <point x="-62.800000000000125" y="-14.5" />
+      <point x="401.7" y="128.0" />
+      <point x="228.5" y="128.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor" target="java.lang.SuppressWarnings">
+      <point x="125.59999999999997" y="-14.5" />
+      <point x="590.1000000000001" y="138.0" />
+      <point x="963.0" y="138.0" />
+      <point x="-40.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor" target="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor">
+      <point x="-5.6843418860808015E-14" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-14.5" />
+      <point x="1249.5" y="54.0" />
+      <point x="843.1500000000001" y="54.0" />
+      <point x="55.66666666666663" y="14.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor">
+      <point x="-55.799999999999955" y="-14.5" />
+      <point x="987.2" y="207.0" />
+      <point x="464.5000000000001" y="207.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.core.PriorityOrdered" target="org.springframework.core.Ordered">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.BeanFactoryAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-14.5" />
+      <point x="763.5" y="54.0" />
+      <point x="787.4833333333333" y="54.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.631578947368421" x="769.0" y="133.0" />
+  <SelectedNodes>
+    <node>org.springframework.context.annotation.CommonAnnotationBeanPostProcessor</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

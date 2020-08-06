@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>designCode.factory.abstractfactory.ICourceAbstractFactory</OriginalElement>
+  <nodes>
+    <node x="165.12499999999997" y="0.0">designCode.factory.abstractfactory.INote</node>
+    <node x="389.125" y="0.0">designCode.factory.abstractfactory.IRecordVideo</node>
+    <node x="207.2590909090909" y="109.0">designCode.factory.abstractfactory.ICourceAbstractFactory</node>
+    <node x="17.461363636363558" y="276.0">designCode.factory.abstractfactory.impl.PythonCourceFactory</node>
+    <node x="425.28863636363633" y="276.0">designCode.factory.abstractfactory.impl.JavaCourseFactory</node>
+    <node x="83.2590909090909" y="143.0">designCode.factory.abstractfactory.impl.NoteImpl</node>
+    <node x="446.2590909090909" y="143.0">designCode.factory.abstractfactory.impl.RecordVideoImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="designCode.factory.abstractfactory.impl.PythonCourceFactory" target="designCode.factory.abstractfactory.impl.NoteImpl">
+      <point x="0.0" y="-48.5" />
+      <point x="126.96136363636356" y="256.0" />
+      <point x="109.2590909090909" y="256.0" />
+      <point x="-26.0" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.JavaCourseFactory" target="designCode.factory.abstractfactory.IRecordVideo">
+      <point x="87.6" y="-48.5" />
+      <point x="622.3886363636364" y="256.0" />
+      <point x="683.9375" y="256.0" />
+      <point x="683.9375" y="49.0" />
+      <point x="504.625" y="49.0" />
+      <point x="49.5" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.PythonCourceFactory" target="designCode.factory.abstractfactory.ICourceAbstractFactory">
+      <point x="43.799999999999955" y="-48.5" />
+      <point x="170.7613636363635" y="246.0" />
+      <point x="262.0090909090909" y="246.0" />
+      <point x="-54.75" y="48.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.RecordVideoImpl" target="designCode.factory.abstractfactory.IRecordVideo">
+      <point x="0.0" y="-14.5" />
+      <point x="522.7590909090909" y="89.0" />
+      <point x="471.625" y="89.0" />
+      <point x="16.5" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.ICourceAbstractFactory" target="designCode.factory.abstractfactory.INote">
+      <point x="-54.75" y="-48.5" />
+      <point x="262.0090909090909" y="69.0" />
+      <point x="216.99999999999997" y="69.0" />
+      <point x="10.375" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.PythonCourceFactory" target="designCode.factory.abstractfactory.impl.RecordVideoImpl">
+      <point x="87.60000000000002" y="-48.5" />
+      <point x="214.56136363636358" y="256.0" />
+      <point x="484.5090909090909" y="256.0" />
+      <point x="-38.25" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.JavaCourseFactory" target="designCode.factory.abstractfactory.ICourceAbstractFactory">
+      <point x="-43.80000000000001" y="-48.5" />
+      <point x="490.9886363636364" y="226.0" />
+      <point x="371.5090909090909" y="226.0" />
+      <point x="54.75" y="48.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.PythonCourceFactory" target="designCode.factory.abstractfactory.IRecordVideo">
+      <point x="-43.80000000000001" y="-48.5" />
+      <point x="83.16136363636355" y="246.0" />
+      <point x="11.0" y="246.0" />
+      <point x="11.0" y="79.0" />
+      <point x="405.625" y="79.0" />
+      <point x="-49.5" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.JavaCourseFactory" target="designCode.factory.abstractfactory.INote">
+      <point x="43.80000000000001" y="-48.5" />
+      <point x="578.5886363636364" y="246.0" />
+      <point x="661.1340909090909" y="246.0" />
+      <point x="661.1340909090909" y="59.0" />
+      <point x="237.74999999999997" y="59.0" />
+      <point x="31.125" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.JavaCourseFactory" target="designCode.factory.abstractfactory.impl.RecordVideoImpl">
+      <point x="0.0" y="-48.5" />
+      <point x="534.7886363636363" y="256.0" />
+      <point x="561.0090909090909" y="256.0" />
+      <point x="38.25" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.NoteImpl" target="designCode.factory.abstractfactory.INote">
+      <point x="0.0" y="-14.5" />
+      <point x="135.2590909090909" y="69.0" />
+      <point x="196.24999999999997" y="69.0" />
+      <point x="-10.375" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.JavaCourseFactory" target="designCode.factory.abstractfactory.impl.NoteImpl">
+      <point x="-87.60000000000002" y="-48.5" />
+      <point x="447.1886363636363" y="236.0" />
+      <point x="161.2590909090909" y="236.0" />
+      <point x="26.0" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.ICourceAbstractFactory" target="designCode.factory.abstractfactory.IRecordVideo">
+      <point x="54.75" y="-48.5" />
+      <point x="371.5090909090909" y="89.0" />
+      <point x="438.625" y="89.0" />
+      <point x="-16.5" y="14.5" />
+    </edge>
+    <edge source="designCode.factory.abstractfactory.impl.PythonCourceFactory" target="designCode.factory.abstractfactory.INote">
+      <point x="-87.60000000000002" y="-48.5" />
+      <point x="39.361363636363535" y="256.0" />
+      <point x="0.0" y="256.0" />
+      <point x="0.0" y="59.0" />
+      <point x="175.49999999999997" y="59.0" />
+      <point x="-31.125" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="342.0" y="186.5" />
+  <SelectedNodes>
+    <node>designCode.factory.abstractfactory.ICourceAbstractFactory</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

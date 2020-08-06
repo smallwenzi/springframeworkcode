@@ -16,11 +16,6 @@
 
 package org.springframework.context.annotation;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -37,6 +32,11 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
+
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Utility class that allows for convenient registration of common
@@ -145,22 +145,41 @@ public abstract class AnnotationConfigUtils {
 	 * @return a Set of BeanDefinitionHolders, containing all bean definitions
 	 * that have actually been registered by this call
 	 */
+	//由于这个方法内容比较多，这里就把最核心的贴出来，这个方法的核心就是注册Spring内置的多个Bean：
 	public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(
 			BeanDefinitionRegistry registry, @Nullable Object source) {
-
+		System.out.println("class"+ AnnotationConfigUtils.class.getName()+"registerAnnotationConfigProcessors 方法,2.1 注册Spring内置的多个Bean ");
 		DefaultListableBeanFactory beanFactory = unwrapDefaultListableBeanFactory(registry);
+		System.out.println("class"+ AnnotationConfigUtils.class.getName()+",2.1.1 beanFactory="+beanFactory);
 		if (beanFactory != null) {
+			System.out.println("class"+ AnnotationConfigUtils.class.getName()+",2.1.2 beanFactory.getDependencyComparator()="+beanFactory.getDependencyComparator());
 			if (!(beanFactory.getDependencyComparator() instanceof AnnotationAwareOrderComparator)) {
+				System.out.println("class"+ AnnotationConfigUtils.class.getName()+",2.1.3 beanFactory.setDependencyComparator="+AnnotationAwareOrderComparator.INSTANCE);
+				//用来支持Spring的Ordered类、@Order注解和@Priority注解。
 				beanFactory.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 			}
+			System.out.println("class"+ AnnotationConfigUtils.class.getName()+",2.1.4 beanFactory.getAutowireCandidateResolver()="+beanFactory.getAutowireCandidateResolver());
 			if (!(beanFactory.getAutowireCandidateResolver() instanceof ContextAnnotationAutowireCandidateResolver)) {
+				System.out.println("class"+ AnnotationConfigUtils.class.getName()+",2.1.5 beanFactory.setAutowireCandidateResolver="+new ContextAnnotationAutowireCandidateResolver());
 				beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());
 			}
 		}
 
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);
 
+		//这里会一连串注册好几个Bean，在这其中最重要的一个Bean（没有之一）就是BeanDefinitionRegistryPostProcessor Bean。
+
+		//ConfigurationClassPostProcessor实现BeanDefinitionRegistryPostProcessor接口，
+		// BeanDefinitionRegistryPostProcessor接口又扩展了BeanFactoryPostProcessor接口，
+		// BeanFactoryPostProcessor是Spring的扩展点之一，
+		// ConfigurationClassPostProcessor是Spring极为重要的一个类，必须牢牢的记住上面所说的这个类和它的继承关系。
+		//除了注册了ConfigurationClassPostProcessor，还注册了其他Bean，其他Bean也都实现了其他接口，比如BeanPostProcessor等。
+		//BeanPostProcessor接口也是Spring的扩展点之一。
+		//至此，实例化AnnotatedBeanDefinitionReader reader分析完毕。
+
+		//判断容器中是否已经存在了ConfigurationClassPostProcessor Bean
 		if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {
+			//如果不存在（当然这里肯定是不存在的），就通过RootBeanDefinition的构造方法获得ConfigurationClassPostProcessor的BeanDefinition，RootBeanDefinition是BeanDefinition的子类
 			RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);
 			def.setSource(source);
 			beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));
@@ -209,10 +228,26 @@ public abstract class AnnotationConfigUtils {
 		return beanDefs;
 	}
 
+	/**
+	 *
+	 * 执行registerPostProcessor方法，registerPostProcessor方法内部就是注册Bean，当然这里注册其他Bean也是一样的流程。
+	 *
+	 *  BeanDefinition是什么，顾名思义，它是用来描述Bean的，
+	 *  里面存放着关于Bean的一系列信息，比如Bean的作用域，Bean所对应的Class，
+	 *  是否懒加载，是否Primary等等，这个BeanDefinition也相当重要，
+	 *  我们以后会常常和它打交道。
+	 * @param registry
+	 * @param definition
+	 * @param beanName
+	 * @return
+	 */
 	private static BeanDefinitionHolder registerPostProcessor(
 			BeanDefinitionRegistry registry, RootBeanDefinition definition, String beanName) {
-
+	    //为BeanDefinition设置了一个Role，ROLE_INFRASTRUCTURE代表这是spring内部的，并非用户定义的
 		definition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
+		//BeanDefinitionRegistry是接口，实现类：AnnotationConfigApplicationContext 实现方法位于：GenericApplicationContext
+		//方法实现this.beanFactory.registerBeanDefinition(beanName, beanDefinition);
+
 		registry.registerBeanDefinition(beanName, definition);
 		return new BeanDefinitionHolder(definition, beanName);
 	}

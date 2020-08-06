@@ -162,10 +162,14 @@ public abstract class BeanDefinitionReaderUtils {
 			BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry)
 			throws BeanDefinitionStoreException {
 
+		//获取beanName
 		// Register bean definition under primary name.
 		String beanName = definitionHolder.getBeanName();
+		//注册bean
+		//这个registerBeanDefinition是不是又有一种似曾相似的感觉，没错，在上面注册Spring内置的Bean的时候，已经解析过这个方法了
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
 
+		//Spring支持别名
 		// Register aliases for bean name, if any.
 		String[] aliases = definitionHolder.getAliases();
 		if (aliases != null) {
